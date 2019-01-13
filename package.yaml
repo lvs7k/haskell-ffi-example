@@ -1,0 +1,46 @@
+name:                haskell-ffi-example
+version:             0.1.0.0
+github:              "lvs7k/haskell-ffi-example"
+license:             BSD3
+author:              "lvs7k"
+maintainer:          "k.takano.7.000@gmail.com"
+copyright:           "Copyright (c) 2019 lvs7k"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+- include/**
+- cbits/**
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Your Projects Category
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/lvs7k/haskell-ffi-example#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+  include-dirs:
+  - include
+  c-sources:
+  - cbits/*.c
+  build-tools:
+  - hsc2hs:hsc2hs
+
+executables:
+  haskell-ffi-example-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-ffi-example
